@@ -12,7 +12,10 @@ int leds[4] = {8, 9, 10, 11};
 int tons[4] = {262, 294, 330, 349};
 int rodada = 0;
 int passo = 0;
-bool game_over = false;
+
+int TRUE = 1;
+int FALSE = 0; 
+int game_over = 0; // 0 = FALSE
 
 void setup() {
   // Leds
@@ -33,11 +36,11 @@ void loop() {
   reproduzirSequencia();
   aguardarJogador();
   // estrutura usada para reiniciar todas as variáveis (novo jogo)
-  if (game_over == true) {
+  if (game_over == TRUE) {
     sequencia[32] = {};
     rodada = 0;
     passo = 0;
-    game_over = false;
+    game_over = FALSE; 
   }
   delay(1000);
 }
@@ -90,7 +93,7 @@ void reproduzirSequencia() {
 void aguardarJogador() {
   int botao_pressionado = 0;
   for (int i = 0; i < rodada; i++) {
-    bool jogada_efetuada = false;
+    bool jogada_efetuada = FALSE;
     while (!jogada_efetuada) {
       for (int i = 0; i <= 3; i++) {
          if (digitalRead(botoes[0]) == HIGH) {
@@ -100,7 +103,7 @@ void aguardarJogador() {
           delay(300);
           digitalWrite(leds[0], LOW);
 
-          jogada_efetuada = true;
+          jogada_efetuada = TRUE;
         }
 
         else if (digitalRead(botoes[1]) == HIGH) {
@@ -110,7 +113,7 @@ void aguardarJogador() {
           delay(300);
           digitalWrite(leds[1], LOW);
 
-          jogada_efetuada = true;
+          jogada_efetuada = TRUE;
         }
 
         else if (digitalRead(botoes[2]) == HIGH) {
@@ -120,7 +123,7 @@ void aguardarJogador() {
           delay(300);
           digitalWrite(leds[2], LOW);
 
-          jogada_efetuada = true;
+          jogada_efetuada = TRUE;
         }
 
         else if (digitalRead(botoes[3]) == HIGH) {
@@ -130,7 +133,7 @@ void aguardarJogador() {
           delay(300);
           digitalWrite(leds[3], LOW);
 
-          jogada_efetuada = true;
+          jogada_efetuada = TRUE;
         }
 
 
@@ -169,7 +172,7 @@ void aguardarJogador() {
   
 
       }
-      game_over = true;
+      game_over = TRUE;
       break;
     }
     passo = passo + 1;
