@@ -116,7 +116,7 @@ int main(void)
 	  	  //BOTAO VERMELHO: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) == 1  BOTAO 0
 	  	  //BOTAO AZUL: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_1) == 1     BOTAO 1
 	  	  //BOTAO VERDE: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 1   BOTAO 2
-	  	  //BOTAO AMARELO: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == 1  BOTAO 3
+	  	  //BOTAO AMARELO: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_11) == 1  BOTAO 3
 
 	  	  	proximaRodada();
 	 	    reproduzirSequencia();
@@ -158,6 +158,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -187,19 +188,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_12
-                          |GPIO_PIN_12, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_12, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PB0 PB1 PB10 PB11 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_10|GPIO_PIN_12;
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_10|GPIO_PIN_11;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PA8 PA9 PA10 PA11
-                           PA12 */
-  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_12
-                          |GPIO_PIN_12;
+  /*Configure GPIO pins : PA8 PA9 PA10 PA12 */
+  GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_12;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -289,7 +287,7 @@ void aguardarJogador() {
           jogada_efetuada = true;
         }
 
-        else if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == 1) {
+        else if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_11) == 1) {
           botao_pressionado = 3;
 
           HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 1);
@@ -378,5 +376,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
