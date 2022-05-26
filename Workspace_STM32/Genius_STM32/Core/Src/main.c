@@ -39,6 +39,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
 int sequencia[32] = {};
 int botoes[4] = {7, 6, 5, 4};
 int leds[4] = {8, 9, 10, 11};
@@ -49,8 +51,6 @@ int passo = 0;
 int true = 1;
 int false = 0;
 int game_over = 0; // começa com false
-/* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
