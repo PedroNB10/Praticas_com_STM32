@@ -96,7 +96,7 @@ void reproduzirSequencia() {
 void aguardarJogador() {
   int botao_pressionado = 0;
   for (int i = 0; i < rodada; i++) {
-    bool jogada_efetuada = FALSE;
+    int jogada_efetuada = FALSE;
     while (!jogada_efetuada) {
       for (int i = 0; i <= 3; i++) {
         if (digitalRead(botoes[0]) == HIGH) {

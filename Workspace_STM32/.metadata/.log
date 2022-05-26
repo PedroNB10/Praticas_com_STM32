@@ -1,0 +1,48 @@
+!SESSION 2022-05-25 21:22:17.456 -----------------------------------------------
+eclipse.buildId=Version 1.9.0
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data D:\Documentos\Repositório Git e GitHub\Praticas_com_STM32\Workspace_github
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-05-25 21:22:29.219
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-05-25 21:22:29.395
+!MESSAGE Log4j initialized with config file D:\Documentos\Repositório Git e GitHub\Praticas_com_STM32\Workspace_github\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-05-25 21:22:36.910
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-25 21:26:00.896
+!MESSAGE Indexed 'Projeto_Genius' (19 sources, 78 headers) in 6.72 sec: 3,643 declarations; 13,172 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2022-05-25 21:29:30.674
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-25 21:31:02.824
+!MESSAGE Indexed 'Projeto_Genius' (19 sources, 78 headers) in 2.5 sec: 3,673 declarations; 13,604 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-25 21:31:30.981
+!MESSAGE Indexed 'Projeto_Genius' (19 sources, 78 headers) in 2.11 sec: 3,673 declarations; 13,604 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-25 21:31:35.432
+!MESSAGE Indexed 'Projeto_Genius' (19 sources, 78 headers) in 1.59 sec: 3,673 declarations; 13,604 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-25 21:34:06.878
+!MESSAGE Indexed 'Genius_STM32' (19 sources, 78 headers) in 3.04 sec: 3,643 declarations; 13,172 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+!SESSION 2022-05-25 21:35:14.455 -----------------------------------------------
+eclipse.buildId=Version 1.9.0
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data D:\Documentos\Repositório Git e GitHub\Praticas_com_STM32\Workspace_github
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-05-25 21:35:23.845
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-05-25 21:35:24.002
+!MESSAGE Log4j initialized with config file D:\Documentos\Repositório Git e GitHub\Praticas_com_STM32\Workspace_github\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-05-25 21:35:35.857
+!MESSAGE Started RMI Server, listening on port 41337
