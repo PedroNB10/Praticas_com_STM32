@@ -36,11 +36,14 @@ void loop() {
   reproduzirSequencia();
   aguardarJogador();
   // estrutura usada para reiniciar todas as variáveis (novo jogo)
+
+
   if (game_over == TRUE) {
-    sequencia[32] = {};
+    for (int i = 0; i < 32; i++)
+      sequencia[i] = 0; 
     rodada = 0;
     passo = 0;
-    game_over = FALSE; 
+    game_over = FALSE;
   }
   delay(1000);
 }
@@ -58,35 +61,35 @@ void proximaRodada() {
 void reproduzirSequencia() {
   for (int i = 0; i < rodada; i++) {
 
-        if(leds[sequencia[i]] == leds[0]){// 8 é o pino 
-            digitalWrite(leds[0], HIGH);
-            delay(500);
-            digitalWrite(leds[0], LOW);
-            delay(100);
-          }
+    if (leds[sequencia[i]] == leds[0]) { // 8 é o pino
+      digitalWrite(leds[0], HIGH);
+      delay(500);
+      digitalWrite(leds[0], LOW);
+      delay(100);
+    }
 
-      else  if(leds[sequencia[i]] == leds[1]){
-          digitalWrite(leds[1], HIGH);
-          delay(500);
-          digitalWrite(leds[1], LOW);
-          delay(100);
-        }  
+    else  if (leds[sequencia[i]] == leds[1]) {
+      digitalWrite(leds[1], HIGH);
+      delay(500);
+      digitalWrite(leds[1], LOW);
+      delay(100);
+    }
 
-      else  if(leds[sequencia[i]] == leds[2]){
+    else  if (leds[sequencia[i]] == leds[2]) {
       digitalWrite(leds[2], HIGH);
       delay(500);
       digitalWrite(leds[2], LOW);
       delay(100);
-    }  
+    }
 
-      else  if(leds[sequencia[i]] == leds[3]){
-          digitalWrite(leds[3], HIGH);
-          delay(500);
-          digitalWrite(leds[3], LOW);
-          delay(100);
-        }  
+    else  if (leds[sequencia[i]] == leds[3]) {
+      digitalWrite(leds[3], HIGH);
+      delay(500);
+      digitalWrite(leds[3], LOW);
+      delay(100);
+    }
 
-      
+
   }
 }
 
@@ -96,43 +99,35 @@ void aguardarJogador() {
     bool jogada_efetuada = FALSE;
     while (!jogada_efetuada) {
       for (int i = 0; i <= 3; i++) {
-         if (digitalRead(botoes[0]) == HIGH) {
+        if (digitalRead(botoes[0]) == HIGH) {
           botao_pressionado = 0;
-
           digitalWrite(leds[0], HIGH);
           delay(300);
           digitalWrite(leds[0], LOW);
-
           jogada_efetuada = TRUE;
         }
 
         else if (digitalRead(botoes[1]) == HIGH) {
           botao_pressionado = 1;
-
           digitalWrite(leds[1], HIGH);
           delay(300);
           digitalWrite(leds[1], LOW);
-
           jogada_efetuada = TRUE;
         }
 
         else if (digitalRead(botoes[2]) == HIGH) {
           botao_pressionado = 2;
-
           digitalWrite(leds[2], HIGH);
           delay(300);
           digitalWrite(leds[2], LOW);
-
           jogada_efetuada = TRUE;
         }
 
         else if (digitalRead(botoes[3]) == HIGH) {
           botao_pressionado = 3;
-
           digitalWrite(leds[3], HIGH);
           delay(300);
           digitalWrite(leds[3], LOW);
-
           jogada_efetuada = TRUE;
         }
 
@@ -145,32 +140,29 @@ void aguardarJogador() {
       for (int i = 0; i <= 3; i++) {
 
 
-            if(i == 0){
-              digitalWrite(leds[0], HIGH);
-              delay(100);
-              digitalWrite(leds[0], LOW);
-              }
-    
-            else if(i == 1){
-              digitalWrite(leds[1], HIGH);
-              delay(100);
-              digitalWrite(leds[1], LOW);
-              }
-    
-            else if(i == 2){
-              digitalWrite(leds[2], HIGH);
-              delay(100);
-              digitalWrite(leds[2], LOW);
-              }
-    
-            else if(i == 3){
-              digitalWrite(leds[3], HIGH);
-              delay(100);
-              digitalWrite(leds[3], LOW);
-          }
-              
-  
+        if (i == 0) {
+          digitalWrite(leds[0], HIGH);
+          delay(100);
+          digitalWrite(leds[0], LOW);
+        }
 
+        else if (i == 1) {
+          digitalWrite(leds[1], HIGH);
+          delay(100);
+          digitalWrite(leds[1], LOW);
+        }
+
+        else if (i == 2) {
+          digitalWrite(leds[2], HIGH);
+          delay(100);
+          digitalWrite(leds[2], LOW);
+        }
+
+        else if (i == 3) {
+          digitalWrite(leds[3], HIGH);
+          delay(100);
+          digitalWrite(leds[3], LOW);
+        }
       }
       game_over = TRUE;
       break;
