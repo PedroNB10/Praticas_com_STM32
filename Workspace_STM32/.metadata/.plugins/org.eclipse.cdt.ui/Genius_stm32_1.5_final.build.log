@@ -1,0 +1,10 @@
+13:08:55 **** Incremental Build of configuration Debug for project Genius_stm32_1.5_final ****
+make -j4 all 
+arm-none-eabi-size   Genius_stm32_1.5_final.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6048	    140	   1732	   7920	   1ef0	Genius_stm32_1.5_final.elf
+Finished building: default.size.stdout
+ 
+
+13:08:55 Build Finished. 0 errors, 0 warnings. (took 616ms)
+
