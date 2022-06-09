@@ -211,7 +211,7 @@ static void MX_GPIO_Init(void)
 //insrindo funções inicio
 void proximaRodada() {
 
-  int sorteio = srand()%4; //comando correto:  int sorteio = random(4);
+  int sorteio = randomSeed(4)//rand()%4; //comando correto:  int sorteio = random(4);
 
 
 
