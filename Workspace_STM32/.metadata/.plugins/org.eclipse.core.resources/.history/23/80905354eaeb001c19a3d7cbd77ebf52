@@ -123,10 +123,10 @@ int main(void)
 
 	  //BOTAO CINZA(BOTAO INICIAR): HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) == 1  BOTAO 4
 
-	  while(botao_iniciar_apertado == false ){
+	  while(botao_iniciar_apertado == false){
+            contador++;
 
-
-	     if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) == 1){
+	     if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) == 1 && contador>10){
 	       botao_iniciar_apertado = true;
 		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 1);
 		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 1);
@@ -239,6 +239,10 @@ static void MX_GPIO_Init(void)
 void proximaRodada() {
 
   int sorteio = srand()%4; //comando correto:  int sorteio = random(4);
+
+
+
+
 
 
   sequencia[rodada] = sorteio;

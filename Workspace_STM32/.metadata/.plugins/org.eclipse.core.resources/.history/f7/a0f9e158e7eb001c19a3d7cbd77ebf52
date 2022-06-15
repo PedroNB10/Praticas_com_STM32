@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2022 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -32,6 +31,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -42,13 +42,27 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+int sequencia[32] = {};
+int botoes[4] = {7, 6, 5, 4};
+int leds[4] = {8, 9, 10, 11};
+int tons[4] = {262, 294, 330, 349};
+int rodada = 0;
+int passo = 0;
 
+int true = 1;
+int false = 0;
+int game_over = 0; // começa com false
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
+void proximaRodada();
+void reproduzirSequencia();
+void aguardarJogador();
+
+
 
 /* USER CODE END PFP */
 
@@ -93,6 +107,30 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	      //LED VERMELHO: HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 1); LED 0
+	  	  //LED AZUL: HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 1);     LED 1
+	  	  //LED VERDE: HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 1);     LED 2
+	  	  //LED AMARELO: HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 1);   LED 3
+
+
+	  	  //BOTAO VERMELHO: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) == 1  BOTAO 0
+	  	  //BOTAO AZUL: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_1) == 1     BOTAO 1
+	  	  //BOTAO VERDE: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 1   BOTAO 2
+	  	  //BOTAO AMARELO: HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_11) == 1  BOTAO 3
+
+	  	  	proximaRodada();
+	 	    reproduzirSequencia();
+	 	    aguardarJogador();
+	 	    // estrutura usada para reiniciar todas as variáveis (novo jogo)
+	 	    if (game_over == true) {
+	 	    	for(int i=0;i<32;i++)
+	 	    			sequencia[i] = 0; // caso comentar, não dá erros
+	 	      rodada = 0;
+	 	      passo = 0;
+	 	      game_over = false;
+	 	    }
+	 	    HAL_Delay(1000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -145,11 +183,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_12, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PA3 */
+  GPIO_InitStruct.Pin = GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB0 PB1 PB10 PB11 */
   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_10|GPIO_PIN_11;
@@ -167,6 +211,147 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+//insrindo funções inicio
+void proximaRodada() {
+
+  int sorteio = srand()%4; //comando correto:  int sorteio = random(4);
+
+
+
+
+
+
+  sequencia[rodada] = sorteio;
+  rodada = rodada + 1;
+  //Serial.print(sorteio);
+}
+
+void reproduzirSequencia() {
+  for (int i = 0; i < rodada; i++) {
+
+        if(leds[sequencia[i]] == leds[0]){// 8 é o pino
+            HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 1);
+            HAL_Delay(500);
+            HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 0);
+            HAL_Delay(100);
+          }
+
+      else  if(leds[sequencia[i]] == leds[1]){
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 1);
+          HAL_Delay(500);
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 0);
+          HAL_Delay(100);
+        }
+
+      else  if(leds[sequencia[i]] == leds[2]){
+      HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 1);
+      HAL_Delay(500);
+      HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 0);
+      HAL_Delay(100);
+    }
+
+      else  if(leds[sequencia[i]] == leds[3]){
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 1);
+          HAL_Delay(500);
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 0);
+          HAL_Delay(100);
+        }
+
+
+  }
+}
+
+void aguardarJogador() {
+  int botao_pressionado = 0;
+  for (int i = 0; i < rodada; i++) {
+     int jogada_efetuada = false;
+    while (jogada_efetuada == false) {
+      for (int i = 0; i <= 3; i++) {
+         if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) == 1) {
+          botao_pressionado = 0;
+
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 1);
+          HAL_Delay(300);
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 0);
+
+          jogada_efetuada = true;
+        }
+
+        else if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_1) == 1) {
+          botao_pressionado = 1;
+
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 1);
+          HAL_Delay(300);
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 0);
+
+          jogada_efetuada = true;
+        }
+
+        else if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_10) == 1) {
+          botao_pressionado = 2;
+
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 1);
+          HAL_Delay(300);
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 0);
+
+          jogada_efetuada = true;
+        }
+
+        else if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_11) == 1) {
+          botao_pressionado = 3;
+
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 1);
+          HAL_Delay(300);
+          HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 0);
+
+          jogada_efetuada = true;
+        }
+
+
+      }
+    }
+    //verificar a jogada
+    if (sequencia[passo] != botao_pressionado) {
+      //efeito luminoso/sonoro indicando que o jogador perdeu
+      for (int i = 0; i <= 3; i++) {
+
+
+            if(i == 0){
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 1);
+              HAL_Delay(100);
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 0);
+              }
+
+            else if(i == 1){
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 1);
+              HAL_Delay(100);
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 0);
+              }
+
+            else if(i == 2){
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 1);
+              HAL_Delay(100);
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 0);
+              }
+
+            else if(i == 3){
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 1);
+              HAL_Delay(100);
+              HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 0);
+          }
+
+
+
+      }
+      game_over = true;
+      break;
+    }
+    passo = passo + 1;
+  }
+  passo = 0;
+}
+
+//inserindo funções fim
 
 /* USER CODE END 4 */
 
