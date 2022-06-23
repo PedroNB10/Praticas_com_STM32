@@ -134,25 +134,16 @@ int main(void)
 
 	     if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) == 1){
 	       botao_iniciar_apertado = true;
-	       HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 1);
-	       HAL_Delay(100);
-	       HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 0);
-
-
-	        HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 1);
-	        HAL_Delay(100);
-	        HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 0);
-
-
-	        HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 1);
-	        HAL_Delay(100);
-	        HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 0);
-
-
-	        HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 1);
-	        HAL_Delay(100);
-	        HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 0);
-	        HAL_Delay(1000);
+		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 1);
+		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 1);
+		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 1);
+		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 1);
+		   HAL_Delay(1000);
+	       HAL_GPIO_WritePin(GPIOA,GPIO_PIN_12, 0);
+		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10, 0);
+		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9, 0);
+		   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_8, 0);
+		   HAL_Delay(1000);
 
 	     }
 	   }

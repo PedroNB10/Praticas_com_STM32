@@ -1,7 +1,8 @@
 main.c:81:5:main	16	static
-main.c:169:6:SystemClock_Config	72	static
-main.c:205:13:MX_GPIO_Init	32	static
-main.c:239:6:proximaRodada	16	static
-main.c:249:6:reproduzirSequencia	16	static
-main.c:284:6:aguardarJogador	32	static
-main.c:382:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:184:6:SystemClock_Config	72	static
+main.c:220:13:MX_GPIO_Init	32	static
+main.c:255:6:PiscaLeds	8	static
+main.c:279:6:proximaRodada	16	static
+main.c:289:6:reproduzirSequencia	16	static
+main.c:324:6:aguardarJogador	32	static
+main.c:422:6:Error_Handler	4	static,ignoring_inline_asm
